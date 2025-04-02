@@ -14,6 +14,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
     {
         public Guid? CustomerId { get; init; }
         public string? CustomerName { get; set; }
+        public string SaleNumber { get; set; } = string.Empty;
         public DateTime SaleDate { get; set; }
         public List<CreateSaleItemCommand> Items { get; set; } = [];
 

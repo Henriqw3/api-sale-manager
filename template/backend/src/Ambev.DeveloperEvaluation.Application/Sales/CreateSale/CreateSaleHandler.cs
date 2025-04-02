@@ -23,17 +23,13 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, Result<Creat
 
     public async Task<Result<CreateSaleResult>> Handle(CreateSaleCommand request, CancellationToken cancellationToken)
     {
-        // Mapeia o Command para a entidade (complementando campos não automáticos)
         var sale = _mapper.Map<Sale>(request);
-        //sale.SaleNumber = GenerateSaleNumber();
-        sale.Items = request.Items.Select(_mapper.Map<SaleItem>).ToList();
+        sale.Items = request.Items.Select(item => _mapper.Map<SaleItem>(item)).ToList();
         sale.CalculateTotal();
 
-        // Validação e persistência (igual ao anterior)
         var validationResult = sale.Validate();
         if (!validationResult.IsValid)
-            //return Result<CreateSaleResult>.Failure(validationResult.Errors);
-            throw new ValidationException("A venda deve conter itens");
+            throw new ValidationException("A venda deve conter itens válidos.");
 
         var createdSale = await _saleRepository.AddSale(sale);
         var result = _mapper.Map<CreateSaleResult>(createdSale);

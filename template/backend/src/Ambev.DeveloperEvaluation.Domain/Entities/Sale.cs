@@ -17,7 +17,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         // External Identities
         public Guid? CustomerId { get; set; }
         public string CustomerName { get; set; } = string.Empty;
-
         public string SaleNumber { get; set; }
         public DateTime SaleDate { get; set; }
         public decimal? TotalAmount { get; private set; }

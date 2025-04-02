@@ -7,6 +7,7 @@
     {
         public Guid? CustomerId { get; init; }
         public string CustomerName { get; init; } = string.Empty;
+        public string SaleNumber { get; init; } = string.Empty;
         public DateTime SaleDate { get; init; }
         public List<SaleItemRequest> Items { get; init; } = [];
     }
