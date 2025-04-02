@@ -7,9 +7,9 @@ using AutoMapper;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales
 {
-    public class CreateSaleMapProfile : Profile
+    public class CreateSaleProfile : Profile
     {
-        public CreateSaleMapProfile()
+        public CreateSaleProfile()
         {
             // Command -> Entidade (opcional, se necessário)
             CreateMap<CreateSaleCommand, Sale>()

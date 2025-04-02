@@ -1,6 +1,8 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale
+﻿using Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
+
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale
 {
-    public record CreateSaleResponse
+    public class GetSaleResponse
     {
         public Guid SaleId { get; init; }
         public string SaleNumber { get; init; } = string.Empty;
@@ -8,7 +10,6 @@
         public decimal TotalAmount { get; init; }
         public List<SaleItemResponse> Items { get; init; } = [];
     }
-
     public record SaleItemResponse
     {
         public Guid ItemId { get; init; }

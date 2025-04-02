@@ -12,7 +12,6 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
     /// </summary>
     public record CreateSaleCommand : IRequest<Result<CreateSaleResult>>
     {
-        public Guid SaleId { get; set; }
         public Guid? CustomerId { get; init; }
         public string? CustomerName { get; set; }
         public DateTime SaleDate { get; set; }

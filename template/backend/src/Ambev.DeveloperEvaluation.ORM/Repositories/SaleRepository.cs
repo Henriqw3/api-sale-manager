@@ -49,6 +49,37 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             return sale;
         }
 
+        public async Task<Sale> UpdateItems(Sale sale, Guid id)
+        {
+            Sale saleByID = await GetByIdSale(id);
+
+            if (saleByID == null)
+            {
+                throw new KeyNotFoundException("Sale not found.");
+            }
+
+            foreach (var item in sale.Items)
+            {
+                var existingItem = saleByID.Items.FirstOrDefault(i => i.ItemId == item.ItemId);
+                if (existingItem != null)
+                {
+                    existingItem.ProductId = item.ProductId;
+                    existingItem.ProductName = item.ProductName;
+                    existingItem.Quantity = item.Quantity;
+                    existingItem.UnitPrice = item.UnitPrice;
+                }
+                else
+                {
+                    saleByID.Items.Add(item);
+                }
+            }
+
+            _context.Sales.Update(saleByID);
+            await _context.SaveChangesAsync();
+
+            return saleByID;
+        }
+
         public async Task<bool> DeleteSale(Guid id)
         {
             Sale saleByID = await GetByIdSale(id);
